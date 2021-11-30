@@ -37,7 +37,7 @@ public class BeanFactory {
             }
         }.startScan();
     }
-//————————————————————————————————————————working!!!
+//——————————————————————————————————————————————————Don't have param-method inject
     private static void dealBean(Class<?> class2) {
         try {
             Object configObject = class2.getConstructor(new Class[] {}).newInstance(new Object[] {});
@@ -48,11 +48,13 @@ public class BeanFactory {
                 }
                 int paraCount = method.getParameterCount();
                 Class<?> returnType = method.getReturnType();
-                if (paraCount!=0) {
-
+                if (paraCount==0) {
+                    Object result = method.invoke(configObject, new Object[]{});
+                    BeanDefinition beanDefinition = new BeanDefinition(returnType,result);
+                    beanPool.put(returnType.getName(), beanDefinition);
                 }
                 else {
-
+                    
                 }
             }
         } catch(Exception e) {
@@ -67,8 +69,8 @@ public class BeanFactory {
         if(!beanDefinition.isInject()) {
             synchronized (beanPool) {
                 if (!beanDefinition.isInject()) {
-                    doInject(beanDefinition);
                     beanDefinition.setInject(true);
+                    doInject(beanDefinition);
                 }
             }
         }

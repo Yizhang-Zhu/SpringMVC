@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="my_MVC-master">
+    <output-path>$PROJECT_DIR$/out/artifacts/my_MVC_master</output-path>
+    <root id="root">
+      <element id="archive" name="my_MVC_master.jar">
+        <element id="module-output" name="my_MVC-master" />
+      </element>
+    </root>
+  </artifact>
+</component>

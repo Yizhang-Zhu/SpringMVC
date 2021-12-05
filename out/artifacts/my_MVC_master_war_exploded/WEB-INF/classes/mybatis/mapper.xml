@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--这里要指向com.myMVC.controller.connect_mybatis下的mapper-->
+<mapper namespace="com.myMVC.controller.connect_mybatis.mapper">
+
+    <!-- 通过id查询用户 -->
+    <select id="findUserById" parameterType="int" resultType="com.myMVC.controller.connect_mybatis.entryy">
+        select * from entryx where id = #{id}
+    </select>
+
+    <insert id="insertInTo" parameterType="com.myMVC.controller.connect_mybatis.entryy">
+        insert into entryx(text,id) values (#{text,jdbcType=VARCHAR},#{id,jdbcType=INTEGER})
+    </insert>
+
+</mapper>
